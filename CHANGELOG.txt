@@ -1,0 +1,9 @@
+Updated 2026-10-27
+- Completely removed legacy Miami repair-cost page from this deployment.
+- Removed its blog listing; link no longer points to deleted content.
+- Reworked Michigan roller article to remove Miami-specific advice and unsupported durability claims.
+- Changed Miami-targeted meta descriptions in repair-versus-replacement blog to Michigan.
+- Updated blog preview to describe Michigan weather.
+- Preserved historical Miami business story, existing review and award claims, as requested.
+- Visual styles, layout and business number retained.
+NOTE: Existing published URLs removed from the archive may continue to be available until the platform clears or redirects them; verify the published URL after deployment, and request removal from the index if needed.
