@@ -609,7 +609,25 @@ footer{background:var(--black);padding:52px 40px 24px}
 <link href="apple-touch-icon.png" rel="apple-touch-icon"/>
 <meta content="https://michiganslidingdoorrepair.com/apple-touch-icon.png" property="og:image"/>
 
-<link href="https://michiganslidingdoorrepair.com/" rel="canonical"/><meta content="https://michiganslidingdoorrepair.com/" property="og:url"/><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://michiganslidingdoorrepair.com/#website","name":"Michigan Sliding Doors View Experts","url":"https://michiganslidingdoorrepair.com/","inLanguage":"en-US"},{"@type":"HomeAndConstructionBusiness","@id":"https://michiganslidingdoorrepair.com/#business","name":"Michigan Sliding Doors View Experts","url":"https://michiganslidingdoorrepair.com/","telephone":"+1-734-333-9985","description":"Locally operated sliding glass door and door wall repair serving Metro Detroit, Michigan. Repair services include rollers, tracks, handles and locks.","areaServed":[{"@type":"AdministrativeArea","name":"Wayne County, Michigan"},{"@type":"AdministrativeArea","name":"Oakland County, Michigan"},{"@type":"AdministrativeArea","name":"Macomb County, Michigan"}],"serviceType":["Sliding glass door repair","Door wall repair","Sliding door roller replacement","Sliding door track repair","Sliding door lock repair","Sliding door handle repair"]},{"@type":"WebPage","@id":"https://michiganslidingdoorrepair.com/#webpage","url":"https://michiganslidingdoorrepair.com/","name":"Sliding Door Repair Metro Detroit | Free Estimates | (734) 333-9985","isPartOf":{"@id":"https://michiganslidingdoorrepair.com/#website"},"about":{"@id":"https://michiganslidingdoorrepair.com/#business"},"inLanguage":"en-US"}]}</script></head>
+<link href="https://michiganslidingdoorrepair.com/" rel="canonical"/><meta content="https://michiganslidingdoorrepair.com/" property="og:url"/><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://michiganslidingdoorrepair.com/#website","name":"Michigan Sliding Doors View Experts","url":"https://michiganslidingdoorrepair.com/","inLanguage":"en-US"},{"@type":"HomeAndConstructionBusiness","@id":"https://michiganslidingdoorrepair.com/#business","name":"Michigan Sliding Doors View Experts","url":"https://michiganslidingdoorrepair.com/","telephone":"+1-734-333-9985","description":"Locally operated sliding glass door and door wall repair serving Metro Detroit, Michigan. Repair services include rollers, tracks, handles and locks.","areaServed":[{"@type":"AdministrativeArea","name":"Wayne County, Michigan"},{"@type":"AdministrativeArea","name":"Oakland County, Michigan"},{"@type":"AdministrativeArea","name":"Macomb County, Michigan"}],"serviceType":["Sliding glass door repair","Door wall repair","Sliding door roller replacement","Sliding door track repair","Sliding door lock repair","Sliding door handle repair"]},{"@type":"WebPage","@id":"https://michiganslidingdoorrepair.com/#webpage","url":"https://michiganslidingdoorrepair.com/","name":"Sliding Door Repair Metro Detroit | Free Estimates | (734) 333-9985","isPartOf":{"@id":"https://michiganslidingdoorrepair.com/#website"},"about":{"@id":"https://michiganslidingdoorrepair.com/#business"},"inLanguage":"en-US"}]}</script>
+<script id="lead-tracking-events">
+/* Non-visual measurement; distinct events for each contact method. */
+window.msdTrackLead=function(method){
+  if(typeof window.gtag==='function'){
+    window.gtag('event',method==='form'?'generate_lead':method+'_click',{
+      event_category:'lead_interaction',method:method,service_area:'metro_detroit'
+    });
+  }
+  if(Array.isArray(window.dataLayer))window.dataLayer.push({event:'msd_'+method+'_lead',lead_method:method});
+};
+document.addEventListener('click',function(evt){
+  var a=evt.target.closest&&evt.target.closest('a[href]');if(!a)return;
+  var href=a.getAttribute('href')||'';
+  if(/^tel:/i.test(href))window.msdTrackLead('phone');
+  else if(/^sms:/i.test(href))window.msdTrackLead('sms');
+});
+</script>
+</head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
 <div class="topbar">🏆 #1 Sliding Door &amp; Window Repair Metro Detroit  ·  ☎ (734) 333-9985  ·  Free Estimates · Mon–Sun 8AM–8PM</div>
@@ -888,6 +906,8 @@ window.submitEstimate=async function(){
   try{
     uploadedFiles.forEach(function(f,i){fd.append('attachment',f,'photo'+(i+1)+'.jpg');});
   var res=await fetch('https://api.web3forms.com/submit',{method:'POST',body:fd});
+    if(!res.ok)throw new Error('Form submission failed');
+    if(typeof window.msdTrackLead==='function')window.msdTrackLead('form');
     document.getElementById('mFormWrap').style.display='none';document.getElementById('mSuccess').style.display='block';
   }catch(err){
     var s=encodeURIComponent('Estimate Request — Michigan Sliding Doors View Experts');
@@ -1315,8 +1335,8 @@ async function submitForm(e){
   data.append('_next','');
   try{
     data.set('access_key','22216659-a6ab-4c5c-81b8-4da814c97f18');data.delete('_captcha');data.delete('_template');var res=await fetch('https://api.web3forms.com/submit',{method:'POST',body:data});
-    if(res.ok||res.redirected){
-      
+    if(res.ok){
+        if(typeof window.msdTrackLead==='function')window.msdTrackLead('form');
         msg.className='form-msg form-msg-success';msg.style.display='block';
         msg.textContent='✅ Thank you '+name+'! Alonso will call you at '+phone+' shortly.';
         document.getElementById('estimateForm').reset();
@@ -1392,9 +1412,11 @@ async function cSubmitF(){
   if(addr)fd.append('address',addr);
   if(email){fd.append('email',email);fd.append('replyto',email);}
   if(notes)fd.append('notes',notes);
-  try{await fetch('https://api.web3forms.com/submit',{method:'POST',body:fd});}catch(e){}
-  if(typeof gtag_report_conversion!=='undefined')gtag_report_conversion();
-  location.reload();
+  try{var res=await fetch('https://api.web3forms.com/submit',{method:'POST',body:fd});
+    if(!res.ok)throw new Error('Form submission failed');
+    if(typeof window.msdTrackLead==='function')window.msdTrackLead('form');
+    location.reload();
+  }catch(e){btn.disabled=false;btn.textContent='Submit Request';if(msg){msg.style.display='block';msg.textContent='Unable to send. Please call or text (734) 333-9985.';}}
 }
 </script>
 <script crossorigin="anonymous" data-cf-beacon='{"version":"2024.11.0","token":"5dc9314a195c44739e58913a9d172327","r":1,"spa":2}' integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" type="module"></script>
