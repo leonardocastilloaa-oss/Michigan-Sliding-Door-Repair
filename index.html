@@ -588,6 +588,8 @@ footer{background:var(--black);padding:52px 40px 24px}
 
 
 
+/* Avoid rendering distant sections during the initial mobile paint. */
+@media(max-width:768px){#services,#about,#locations,#testimonials,#reviews,#blog,#faq,#gallery{content-visibility:auto;contain-intrinsic-size:auto 850px}}
 </style>
 <!-- Google Ads -->
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=AW-17090956467"></script>
@@ -1002,7 +1004,7 @@ Estimate:
 <div class="about-layout">
 <div class="about-photo-wrap">
 <div class="about-img-frame">
-<img alt="Alonso working on sliding door repair in Metro Detroit — Michigan Sliding Doors View Experts" class="about-photo-img" decoding="async" fetchpriority="high" height="560" loading="lazy" src="foto1.jpg" width="560"/>
+<img alt="Alonso working on sliding door repair in Metro Detroit — Michigan Sliding Doors View Experts" class="about-photo-img" decoding="async" fetchpriority="low" height="560" loading="lazy" src="foto1.jpg" width="560"/>
 
 </div>
 <div class="about-badge-float">
